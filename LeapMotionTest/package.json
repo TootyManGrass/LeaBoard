@@ -1,0 +1,14 @@
+{
+  "name": "LeapMotionTest",
+  "version": "0.0.0",
+  "description": "This is the server socket that will be used to connect to the express server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "socket.io": "~1.7.2"
+  }
+}
