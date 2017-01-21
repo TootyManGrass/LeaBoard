@@ -42,25 +42,24 @@ public class TextController : MonoBehaviour {
 	}
 
 	public void updateScreen_me(string text){
-		text = ResolveTextSize (text, 21);
-		text = "To [" + Username_Text.text + "]: " + text +"\n"+screentxt.text;
+		text = ResolveTextSize (text, 60);
+
+		screentxt.text = "To [" + Username_Text.text + "]: " + text +"\n"+screentxt.text;
 		numOfNewLines++;
 		while (numOfNewLines >= 9) {
-			text = text.Substring (0, text.LastIndexOf ("\n"));
+			screentxt.text = screentxt.text.Substring (0, screentxt.text.LastIndexOf ("\n"));
 			numOfNewLines--;
 		}
-		screentxt.text = text;
 	}
 
 	public void updateScreen_them(string text){
-		text = ResolveTextSize (text, 21);
-		text = text+"\n"+screentxt.text;
+		text = ResolveTextSize (text, 60);
+		screentxt.text =  text + "\n" +screentxt.text;
 		numOfNewLines++;
 		while (numOfNewLines >= 9) {
-			text = text.Substring (0, text.LastIndexOf ("\n"));
+			screentxt.text = screentxt.text.Substring (0, screentxt.text.LastIndexOf ("\n"));
 			numOfNewLines--;
 		}
-		screentxt.text = text;
 	}
 
 }

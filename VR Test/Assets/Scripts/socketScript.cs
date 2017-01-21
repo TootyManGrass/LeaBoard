@@ -57,7 +57,7 @@ public class socketScript : MonoBehaviour
     private string parseJson(string json)
     {
         FromServer obj = JsonUtility.FromJson<FromServer>(json);
-           
-		return "From [" + obj.user + "]: " + obj.text;
+        
+		return "From [" + obj.user + "]: " + obj.text.Trim();
     }
 }
