@@ -7,52 +7,6 @@ public class UsernameDisplay : MonoBehaviour {
 
 	public bool writeUsername;
 
-	//public Material activeMat;
-	//private Material defaultMat;
-	//private MeshRenderer gameObjectRenderer;
-
-	// Use this for initialization
-	/*void Start () {
-		rend = GetComponent<Renderer>();
-
-		//gameObjectRenderer = GetComponent<MeshRenderer> ();
-		//defaultMat = gameObjectRenderer.material;
-
-		writeUsername = false;
-	}
-	
-	/*void OnTriggerEnter (Collider other) {
-		if (other.name == "bone3" && other.transform.parent.name == "index" && other.transform.parent.transform.parent.name == "RigidRoundHand_R") {
-			writeUsername = true; 
-		}		
-	}
-
-	void Update() {
-		if (writeUsername) {
-			rend.material.color = Color.green;
-		} 
-		else {
-			rend.material.color = Color.white;
-		}
-	}
-
-	void OnTriggerExit (Collider other) {
-		if (other.name == "bone3" && other.transform.parent.name == "index" && other.transform.parent.transform.parent.name == "RigidRoundHand_R") {
-			writeUsername = true;
-		}
-	}
-
-	void Update(){
-		if (writeUsername) {
-			//gameObjectRenderer.material = activeMat;
-			rend.material.color = Color.green;
-		}
-		else {
-			//gameObjectRenderer.material = defaultMat;
-			rend.material.color = Color.white;
-		}
-	}*/
-
 	public Material activeMat;
 	private Material defaultMat;
 	private MeshRenderer gameObjectRenderer;
@@ -70,6 +24,7 @@ public class UsernameDisplay : MonoBehaviour {
 		defaultMat = gameObjectRenderer.material;
 		writeUsername = false;
 		displayrend = display.GetComponent<MeshRenderer> ();
+		displayrend.material = activeMat;
 	}
 
 	void OnTriggerEnter (Collider other) {
