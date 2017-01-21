@@ -71,7 +71,7 @@ public class socketScript : MonoBehaviour
         Debug.Log("[CLIENT] -> " + str);
     }
 
-    private string getJson(string username, string message)
+    public string getJson(string username, string message)
     {
         return "{\"user\": \"" + username + "\",\n\"text\": \"" + message + "\"}";
     }
