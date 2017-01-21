@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
+//using Newtonsoft.Json;
 
 public class socketScript : MonoBehaviour
 {
     //variables
     private TCPConnection myTCP;
-
-    //private string serverMsg;
 
     public string username;
     public string message;
@@ -47,8 +46,8 @@ public class socketScript : MonoBehaviour
             message = GUILayout.TextField(message);
             if (GUILayout.Button("Write to server", GUILayout.Height(30)))
             {
-              //SendToServer(message);
-              SendToServer(getJson(username, message));
+                //SendToServer(message);
+                SendToServer(getJson(username, message));
             }
         }
 
@@ -61,6 +60,12 @@ public class socketScript : MonoBehaviour
         if (serverSays != "")
         {
             Debug.Log("[SERVER]" + serverSays);
+
+            string parsed = parseJson(serverSays);
+            if (parsed != null)
+            {
+                Debug.Log("Parsed: " + parsed);
+            }
         }
     }
 
@@ -69,10 +74,23 @@ public class socketScript : MonoBehaviour
     {
         myTCP.writeSocket(str);
         Debug.Log("[CLIENT] -> " + str);
+        //Debug.Log("After parsing: " + parseJson(str));
     }
 
     public string getJson(string username, string message)
     {
         return "{\"user\": \"" + username + "\",\n\"text\": \"" + message + "\"}";
+    }
+
+    private string parseJson(string json)
+    {
+        FromServer obj = JsonUtility.FromJson<FromServer>(json);
+
+        if (obj.valid)
+        {
+            return "[" + obj.user + "]: " + obj.text;
+        }
+
+        return null;
     }
 }
