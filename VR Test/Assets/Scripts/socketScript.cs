@@ -9,6 +9,10 @@ public class socketScript : MonoBehaviour
     public string username;
     public string message;
 
+
+	public GameObject screentxt;
+	private TextController txtcntrl;
+
     void Awake()
     {
         //add a copy of TCPConnection to this game object
@@ -17,7 +21,7 @@ public class socketScript : MonoBehaviour
 
     void Start()
     {
-		
+		txtcntrl = screentxt.GetComponent<TextController> ();
     }
 
     void Update()
@@ -66,6 +70,7 @@ public class socketScript : MonoBehaviour
             if (parsed != null)
             {
                 Debug.Log("Parsed: " + parsed);
+				txtcntrl.updateScreen (parsed);
             }
         }
     }

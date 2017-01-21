@@ -39,7 +39,7 @@ public class TextController : MonoBehaviour {
 
 	public void updateScreen(string text){
 		text = ResolveTextSize (text, 21);
-		screentxt += text;
+		screentxt.text += text;
 	}
 
 
