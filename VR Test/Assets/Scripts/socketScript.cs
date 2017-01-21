@@ -17,7 +17,7 @@ public class socketScript : MonoBehaviour
 
     void Start()
     {
-
+		
     }
 
     void Update()
@@ -36,6 +36,7 @@ public class socketScript : MonoBehaviour
                 //try to connect
                 Debug.Log("Attempting to connect..");
                 myTCP.setupSocket();
+				SendToServer (getJson ("k3273159@mvrht.com", "promisetest"));
             }
         }
 
