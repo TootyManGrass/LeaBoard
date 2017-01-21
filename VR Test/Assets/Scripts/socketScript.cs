@@ -67,11 +67,11 @@ public class socketScript : MonoBehaviour
             Debug.Log("[SERVER]" + serverSays);
 
             string parsed = parseJson(serverSays);
-            if (parsed != null)
-            {
+            //if (parsed != null)
+            //{
                 Debug.Log("Parsed: " + parsed);
-				txtcntrl.updateScreen (parsed);
-            }
+				txtcntrl.updateScreen_them (parsed);
+            //}
         }
     }
 
@@ -92,11 +92,10 @@ public class socketScript : MonoBehaviour
     {
         FromServer obj = JsonUtility.FromJson<FromServer>(json);
 
-        if (obj.valid)
-        {
-            return "[" + obj.user + "]: " + obj.text;
-        }
 
-        return null;
+            return "[" + obj.user + "]: " + obj.text;
+        
+
+        
     }
 }

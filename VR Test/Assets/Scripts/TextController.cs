@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TextController : MonoBehaviour {
-
+	private int numOfNewLines;
 	private TextMesh screentxt;
 	private GameObject rig;
 	private socketScript s_script;
@@ -11,6 +11,7 @@ public class TextController : MonoBehaviour {
 		screentxt = gameObject.GetComponent<TextMesh>();
 		rig = GameObject.Find("LMHeadMountedRig");
 		s_script = rig.GetComponent<socketScript>();
+		numOfNewLines = 0;
 	}
 
 	// Wrap text by line height
@@ -37,10 +38,26 @@ public class TextController : MonoBehaviour {
 	 	return result.Substring(1,result.Length-1);
 	}
 
-	public void updateScreen(string text){
+	public void updateScreen_me(string text){
 		text = ResolveTextSize (text, 21);
-		screentxt.text += text;
+		text = "[Me]: " + text+"\n"+screentxt.text;
+		numOfNewLines++;
+		while (numOfNewLines >= 9) {
+			text = text.Substring (0, text.LastIndexOf ("\n"));
+			numOfNewLines--;
+		}
+		screentxt.text = text;
 	}
 
+	public void updateScreen_them(string text){
+		text = ResolveTextSize (text, 21);
+		text = text+"\n"+screentxt.text;
+		numOfNewLines++;
+		while (numOfNewLines >= 9) {
+			text = text.Substring (0, text.LastIndexOf ("\n"));
+			numOfNewLines--;
+		}
+		screentxt.text = text;
+	}
 
 }
