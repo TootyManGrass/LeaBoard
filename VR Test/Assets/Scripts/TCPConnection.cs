@@ -7,8 +7,8 @@ public class TCPConnection : MonoBehaviour
 {
     //ip/address of the server, 127.0.0.1 is for your own computer
     //public string conHost = "127.0.0.1";
-    //public string conHost = "100.64.217.173";
-    public string conHost = "wolf.teach.cs.toronto.edu";
+    public string conHost = "100.64.209.171";
+    //public string conHost = "wolf.teach.cs.toronto.edu";
 
     //port for the server, make sure to unblock this in your router firewall if you want to allow external connections
     public int conPort = 5002;

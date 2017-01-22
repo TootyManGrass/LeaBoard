@@ -62,11 +62,13 @@ namespace Leap.Unity.Attachments {
      */
     public virtual void Activate(bool doTransition = true){
       IsActive = true;
+			Debug.Log ("call1");
       ChangeChildState();
 	  if (Transition != null && doTransition) {
         Transition.OnComplete.AddListener(FinishInTransition);
         Transition.TransitionIn();
       }
+			Debug.Log ("call2");
 	  keypadscript.SetCon1 ();
     }
 
@@ -92,6 +94,7 @@ namespace Leap.Unity.Attachments {
     protected virtual void FinishInTransition() {
       if (Transition != null) {
         Transition.OnComplete.RemoveListener(FinishInTransition);
+				keypadscript.SetCon1 ();
       }
     }
 
@@ -102,6 +105,7 @@ namespace Leap.Unity.Attachments {
     protected virtual void FinishOutTransition() {
       if (Transition != null) {
         Transition.OnComplete.RemoveListener(FinishOutTransition);
+				keypadscript.SetCon1 ();
       }
       ChangeChildState();
     }
