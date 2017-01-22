@@ -22,7 +22,17 @@ module.exports = {
     recieveMessage: (api, socket) => {
         return new Promise((resolve, reject) => {
             api.listen((err, message)=>{
-                socket.write(JSON.stringify(message.body) + "\n");
+                var obj = {user: "unknown", text: message.body};
+                api.getFriendsList((err, arr)=>{
+                    for (var i in arr){
+                        if (arr[i].userID == message.senderID){
+                            obj.user = arr[i].fullName;
+                            break;
+                        }
+                    }
+                    socket.write(JSON.stringify(obj) + "\n");
+                });
+                
                 return err ? reject(err) : resolve("yay");
             });
         });

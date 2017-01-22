@@ -16,7 +16,6 @@ function broadCast(){
 				var data = backLog[i];
 				if (data.id != client.id){
 					try {
-						console.log(data.data);
 						var obj = JSON.stringify(data.data+"\n");
 						client.write(obj);
 					} catch (err){
@@ -51,7 +50,6 @@ net.createServer((socket)=>{
 	socket.on('data', (data) => {
 		try{
 			var rec = JSON.parse(data.toString().trim());
-			console.log(socket.state)
 			responseMap[socket.state](socket, rec);
 		} catch (err){
 
