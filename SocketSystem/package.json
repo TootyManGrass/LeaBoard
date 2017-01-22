@@ -1,0 +1,14 @@
+{
+  "name": "LeapMotionTest",
+  "version": "0.0.0",
+  "description": "This is the server socket that will be used to connect to the express server.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/Server.js"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "q": "^1.4.1"
+  }
+}
