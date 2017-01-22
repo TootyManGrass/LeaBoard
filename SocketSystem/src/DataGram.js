@@ -1,8 +1,12 @@
 module.exports = {
 
-	DatagramConstructor : function(id, data){
+	DatagramConstructor : function(id, name, text, valid){
 		this.id = id;
-		this.data = data;
+		this.data = {
+			"user": name, 
+			"text": text,
+			"valid": valid
+		};
 	}
 
 

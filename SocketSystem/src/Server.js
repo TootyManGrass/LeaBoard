@@ -1,12 +1,12 @@
 var net = require('net');
-
+var responseMap = require("./ResponseMap.js");
+var DataGram = require("./DataGram.js").DatagramConstructor
 
 var globalID = 0;
 var clients = [];
 var backLog = [];
 var removal = [];
 
-var Datagram = require("./DataGram.js").DatagramConstructor
 
 
 function broadCast(){
@@ -16,7 +16,9 @@ function broadCast(){
 				var data = backLog[i];
 				if (data.id != client.id){
 					try {
-						client.write(data.data);
+						console.log(data.data);
+						var obj = JSON.stringify(data.data+"\n");
+						client.write(obj);
 					} catch (err){
 
 					}
@@ -43,12 +45,18 @@ net.createServer((socket)=>{
 
 	socket.setNoDelay(true);
 	socket.id = globalID ++;
+	socket.state = 0;
 	socket.disconnected = false;
 
 	socket.on('data', (data) => {
-		var tmp = data.toString();
-		console.log(tmp);
-		backLog.push(new Datagram(socket.id, tmp));
+		try{
+			var rec = JSON.parse(data.toString().trim());
+			console.log(socket.state)
+			responseMap[socket.state](socket, rec);
+		} catch (err){
+
+			
+		}	
 	});
 
 	socket.on('disconnect', function() {
