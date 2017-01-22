@@ -4,37 +4,10 @@ var DataGram = require("./DataGram.js").DatagramConstructor
 
 var globalID = 0;
 var clients = [];
-var backLog = [];
 var removal = [];
 
 
 
-function broadCast(){
-	clients.forEach((client)=>{
-		if (!client.disconnected){
-			for (var i in backLog){
-				var data = backLog[i];
-				if (data.id != client.id){
-					try {
-						var obj = JSON.stringify(data.data+"\n");
-						client.write(obj);
-					} catch (err){
-
-					}
-				}
-			}
-		}
-	});
-	removal.forEach((client)=>{
-		var clientIndex = clients.indexOf(client);
-		if (client.disconnected)
-			clients.splice(clientIndex, 1);
-	})
-	removal.length = 0;
-	backLog.length = 0;
-}
-
-setInterval(broadCast,100);
 
 //Creates a server
 net.createServer((socket)=>{
@@ -57,10 +30,10 @@ net.createServer((socket)=>{
 		}	
 	});
 
-	socket.on('disconnect', function() {
-      	console.log('Got disconnect!');
+	socket.on('end', function() {
       	socket.disconnected = true;
-   		removal.add(socket);
+   		var clientIndex = clients.indexOf(socket);
+		clients.splice(clientIndex, 1);
    	});
 
 
