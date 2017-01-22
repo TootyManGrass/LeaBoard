@@ -14,21 +14,21 @@ public class LetterContainerSelector : MonoBehaviour {
 	
 	// Update is called once per frame
 	public virtual void SetCon1 () {
-		Debug.Log ("setcon1");
+		//Debug.Log ("setcon1");
 		LetCon1.SetActive (true);
 		LetCon2.SetActive (false);
 		LetCon3.SetActive (false);
 	}
 
 	public virtual void SetCon2 () {
-		Debug.Log ("setcon2");
+		//Debug.Log ("setcon2");
 		LetCon1.SetActive (false);
 		LetCon2.SetActive (true);
 		LetCon3.SetActive (false);
 	}
 
 	public virtual void SetCon3 () {
-		Debug.Log ("setcon3");
+		//Debug.Log ("setcon3");
 		LetCon1.SetActive (false);
 		LetCon2.SetActive (false);
 		LetCon3.SetActive (true);
