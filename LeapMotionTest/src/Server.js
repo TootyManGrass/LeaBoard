@@ -14,16 +14,23 @@ function broadCast(){
 		if (!client.disconnected){
 			for (var i in backLog){
 				var data = backLog[i];
-				if (data.id != client.id)
-					//client.write(data);
+				if (data.id != client.id){
+					try {
+						client.write(data.data);
+					} catch (err){
+
+					}
+				}
 			}
 		}
 	});
 	removal.forEach((client)=>{
 		var clientIndex = clients.indexOf(client);
-		clients.splice(clientIndex, 1);
+		if (client.disconnected)
+			clients.splice(clientIndex, 1);
 	})
-	removal.splice(0, removal.length);
+	removal.length = 0;
+	backLog.length = 0;
 }
 
 setInterval(broadCast,100);
@@ -54,5 +61,5 @@ net.createServer((socket)=>{
 
 }).listen(5001);
 
-console.log("Server running port 5000\n");
+console.log("Server running port 5001\n");
 
