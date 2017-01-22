@@ -13,8 +13,6 @@ public class ButtonResponse : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other) {
 		if (other.name == "bone3" && other.transform.parent.name == "index" && other.transform.parent.transform.parent.name == "RigidRoundHand_R") {
-		Debug.Log (other.name);	
-		Debug.Log (other.transform.parent.name);
 		gameObjectRenderer.material = activeMat;
 		}
 	}
