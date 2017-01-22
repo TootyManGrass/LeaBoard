@@ -31,9 +31,10 @@ module.exports = {
                         }
                     }
                     socket.write(JSON.stringify(obj) + "\n");
+                    return err ? reject(err) : resolve("yay");
                 });
                 
-                return err ? reject(err) : resolve("yay");
+                
             });
         });
     }
