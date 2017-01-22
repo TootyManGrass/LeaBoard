@@ -15,7 +15,7 @@ function broadCast(){
 			for (var i in backLog){
 				var data = backLog[i];
 				if (data.id != client.id)
-					client.write(data);
+					//client.write(data);
 			}
 		}
 	});
