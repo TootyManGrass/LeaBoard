@@ -21,7 +21,11 @@ namespace Leap.Unity.Attachments {
    * @since 4.1.1
    */
   public class AttachmentController : MonoBehaviour {
-
+	public GameObject keypad;
+	private LetterContainerSelector keypadscript;
+	void Start() {
+		keypadscript = keypad.GetComponent<LetterContainerSelector>();
+	}
     /**
      * Reports whether this attachment is in an activated state or not.
      *  @since 4.1.1
@@ -59,10 +63,11 @@ namespace Leap.Unity.Attachments {
     public virtual void Activate(bool doTransition = true){
       IsActive = true;
       ChangeChildState();
-      if (Transition != null && doTransition) {
+	  if (Transition != null && doTransition) {
         Transition.OnComplete.AddListener(FinishInTransition);
         Transition.TransitionIn();
       }
+	  keypadscript.SetCon1 ();
     }
 
     /**
