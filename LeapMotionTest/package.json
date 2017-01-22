@@ -9,6 +9,5 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "socket.io": "~1.7.2"
   }
 }
