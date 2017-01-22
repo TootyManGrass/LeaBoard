@@ -10,6 +10,8 @@ var rl = readline.createInterface({
     output: process.stdout
 });
 
+
+
 rl.question("What is your email and password? \n", function lambda(answer) {
     var string = answer.split(' ');
     var email = string[0];
@@ -21,8 +23,7 @@ rl.question("What is your email and password? \n", function lambda(answer) {
             rl.question("What is your email and password? \n", lambda);
         }
         else{
-
-            api.getUserID("Tony Kung", function(err, data) {
+            api.getUserID('Tony Kung', function(err, data) {
                 if(err) return callback(err);
                 var threadID = data[0].userID;
                 api.sendMessage('sampleMessage', threadID);
