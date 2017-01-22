@@ -15,7 +15,7 @@ function broadCast(){
 			for (var i in backLog){
 				var data = backLog[i];
 				if (data.id != client.id)
-					client.write();
+					client.write(data);
 			}
 		}
 	});
@@ -34,7 +34,7 @@ net.createServer((socket)=>{
 	console.log("Connection from: ", socket.remotePort);
 	clients.push(socket)
 
-
+	socket.setNoDelay(true);
 	socket.id = globalID ++;
 	socket.disconnected = false;
 
@@ -52,7 +52,7 @@ net.createServer((socket)=>{
 
 
 
-}).listen(5000, '127.0.0.1');
+}).listen(5000);
 
 console.log("Server running port 5000\n");
 
